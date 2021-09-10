@@ -14,24 +14,24 @@ import org.bl.coffeecounter.util.parseNFCMessage
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MainViewModel by viewModels {
-        MainViewModelFactory((application as CoffeeCounterApplication).repository)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-
             if (intent != null) {
                 handleIntent(intent);
             }
         }
-
     }
+
+
+
+    private val mainViewModel: MainViewModel by viewModels {
+        MainViewModelFactory((application as CoffeeCounterApplication).repository)
+    }
+
+
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
