@@ -22,12 +22,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="serif-monospace"
             android:text="@string/the_coffeecount"
-            android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/coffeecounter_header" />
 
         <TextView
             android:id="@+id/labelToday"
@@ -174,6 +173,7 @@
 
         <TextView
             android:id="@+id/labelBalance"
+            style="@style/coffeecount_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -184,12 +184,23 @@
 
         <TextView
             android:id="@+id/balance"
+            style="@style/coffeecount_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.balance.toString()}"
             app:layout_constraintBottom_toBottomOf="@+id/labelBalance"
             app:layout_constraintStart_toStartOf="@+id/coffeeCountTotal"
-            android:text="@{viewModel.balance.toString()}"
             tools:text="0.00 Eur" />
+
+        <Button
+            android:id="@+id/paymentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Aufladen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balance" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

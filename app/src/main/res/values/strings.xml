@@ -8,4 +8,12 @@
     <string name="total">Total</string>
     <string name="this_week">This week</string>
     <string name="could_not_parse_nfc_tag">Bad data from NFC</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fifty_eur">50 €</string>
+    <string name="ten_eur">10 €</string>
+    <string name="twenty_eur">20 €</string>
+    <string name="five_eur">5 €</string>
+    <string name="payment">Payment</string>
+    <string name="pay_now">Pay now</string>
 </resources>

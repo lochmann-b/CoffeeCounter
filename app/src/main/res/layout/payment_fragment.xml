@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="org.bl.coffeecounter.ui.payment.PaymentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".PaymentFragment">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            style="@style/chips_payment"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:singleLine="false"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_5"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/five_eur"
+                android:checked="@{viewModel.isFive()}"
+                android:onClick="@{() -> viewModel.onFive()}"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_10"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/ten_eur"
+                android:checked="@{viewModel.isTen()}"
+                android:onClick="@{() -> viewModel.onTen()}"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_20"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/twenty_eur"
+                android:checked="@{viewModel.isTwenty()}"
+                android:onClick="@{() -> viewModel.onTwenty()}"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_50"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/fifty_eur"
+                android:checked="@{viewModel.isFifty()}"
+                android:onClick="@{() -> viewModel.onFifty()}"
+                />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/coffeecounter_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/payment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={viewModel.selectedAmount}"
+            app:layout_constraintEnd_toEndOf="@+id/chipGroup"
+            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+        <Button
+            android:id="@+id/pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/pay_now"
+            android:enabled="@{viewModel.isValid()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

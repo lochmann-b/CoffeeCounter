@@ -13,66 +13,79 @@ import java.util.*
 
 class MainViewModel(private val repository: CoffeeRepository) : ViewModel() {
 
-    // Using LiveData and caching what allWords returns has several benefits:
-    // - We can put an observer on the data (instead of polling for changes) and only update the
-    //   the UI when the data actually changes.
-    // - Repository is completely separated from the UI through the ViewModel.
     val allCoffee: LiveData<List<Coffee>> = repository.allCoffee.asLiveData()
     val allPayment: LiveData<List<Payment>> = repository.allPayment.asLiveData()
 
 
+    val coffeeCountToday = Transformations.map(
+        allCoffee,
+        Function { all ->
+            all.filter { coffee ->
+                coffee.localDateTime.toLocalDate().isEqual(LocalDate.now())
+            }.count()
+        })
 
-
-        val coffeeCountToday = Transformations.map(allCoffee, Function { all -> all.filter {coffee ->  coffee.localDateTime.toLocalDate().isEqual(LocalDate.now())}.count() })
-
-        val coffeeCountThisWeek = Transformations.map(allCoffee, Function { all -> all.filter {coffee ->
+    val coffeeCountThisWeek = Transformations.map(allCoffee, Function { all ->
+        all.filter { coffee ->
             val weekFields = WeekFields.ISO
             val weekNumber = coffee.localDateTime.get(weekFields.weekOfWeekBasedYear())
             val weekNumberNow = LocalDate.now().get(weekFields.weekOfWeekBasedYear())
             weekNumber == weekNumberNow
-        }.count() })
+        }.count()
+    })
 
-        val coffeeCountThisMonth = Transformations.map(allCoffee, Function { all -> all.filter {coffee ->  coffee.localDateTime.month == LocalDate.now().month}.count() })
-        val coffeeCountThisYear = Transformations.map(allCoffee, Function { all -> all.filter {coffee ->  coffee.localDateTime.year == LocalDate.now().year}.count() })
+    val coffeeCountThisMonth = Transformations.map(
+        allCoffee,
+        Function { all ->
+            all.filter { coffee -> coffee.localDateTime.month == LocalDate.now().month }.count()
+        })
+    val coffeeCountThisYear = Transformations.map(
+        allCoffee,
+        Function { all ->
+            all.filter { coffee -> coffee.localDateTime.year == LocalDate.now().year }.count()
+        })
 
-        private var lastNFCCoffeeAddedAt: Long = 0
+    private var lastNFCCoffeeAddedAt: Long = 0
 
 
-        fun getBalance(): LiveData<Balance> {
-            val balance: MediatorLiveData<Balance> = MediatorLiveData()
-            balance.value = Balance(0,0)
-            balance.addSource(allCoffee) { all -> balance.value = Balance(balance.value?.income ?: 0, all.sumOf{it.cost.toInt()}) }
-            balance.addSource(allPayment) { all -> balance.value = Balance(all.sumOf{it.amount}, balance.value?.expenses ?: 0 ) }
-            return balance
+    fun getBalance(): LiveData<Balance> {
+        val balance: MediatorLiveData<Balance> = MediatorLiveData()
+        balance.value = Balance(0, 0)
+        balance.addSource(allCoffee) { all ->
+            balance.value = Balance(balance.value?.income ?: 0, all.sumOf { it.cost.toInt() })
         }
+        balance.addSource(allPayment) { all ->
+            balance.value = Balance(all.sumOf { it.amount }, balance.value?.expenses ?: 0)
+        }
+        return balance
+    }
 
 
-        /**
-         * Launching a new coroutine to insert the data in a non-blocking way
-         */
-        fun addACoffee(coffee: Coffee) = viewModelScope.launch {
-            if(coffee.fromNFC) {
-                if(lastNFCCoffeeAddedAt == 0L ||(System.currentTimeMillis() - lastNFCCoffeeAddedAt >= 500)){
-                    repository.insert(coffee)
-                    lastNFCCoffeeAddedAt = System.currentTimeMillis();
-                }
-            } else {
+    /**
+     * Launching a new coroutine to insert the data in a non-blocking way
+     */
+    fun addACoffee(coffee: Coffee) = viewModelScope.launch {
+        if (coffee.fromNFC) {
+            if (lastNFCCoffeeAddedAt == 0L || (System.currentTimeMillis() - lastNFCCoffeeAddedAt >= 500)) {
                 repository.insert(coffee)
+                lastNFCCoffeeAddedAt = System.currentTimeMillis();
             }
+        } else {
+            repository.insert(coffee)
         }
+    }
 
-        fun addCoffeeManually() {
-            viewModelScope.launch {
-                repository.insert(Coffee(fromNFC = false))
-            }
+    fun addCoffeeManually() {
+        viewModelScope.launch {
+            repository.insert(Coffee(fromNFC = false))
         }
+    }
 
-        fun deleteLastCoffee() {
-            viewModelScope.launch {
-                repository.deleteLastCoffee()
-            }
+    fun deleteLastCoffee() {
+        viewModelScope.launch {
+            repository.deleteLastCoffee()
         }
-
+    }
 
 
 }

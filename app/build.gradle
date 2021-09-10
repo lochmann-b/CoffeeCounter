@@ -7,6 +7,8 @@ plugins {
 android {
     compileSdk 30
 
+    apply plugin: "androidx.navigation.safeargs.kotlin"
+
     buildFeatures {
         dataBinding true
     }
@@ -50,10 +52,12 @@ android {
 
 dependencies {
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def nav_version = "2.3.5"
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
 
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
