@@ -4,13 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import org.bl.coffeecounter.db.converters.Converters
 import org.bl.coffeecounter.db.dao.CoffeDao
+import org.bl.coffeecounter.db.dao.PaymentDao
 import org.bl.coffeecounter.db.entities.Coffee
+import org.bl.coffeecounter.db.entities.Payment
 
-@Database(entities = arrayOf(Coffee::class), version = 1)
+@Database(entities = [Coffee::class, Payment::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class CoffeeDatabase: RoomDatabase() {
 
     abstract fun coffeeDao(): CoffeDao
+    abstract fun paymentDao(): PaymentDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

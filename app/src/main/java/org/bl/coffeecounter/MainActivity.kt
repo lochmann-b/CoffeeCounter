@@ -1,18 +1,16 @@
 package org.bl.coffeecounter
 
 import android.content.Intent
-import android.nfc.NdefMessage
-import android.nfc.NdefRecord
 import android.nfc.NfcAdapter
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import org.bl.coffeecounter.db.entities.Coffee
 import org.bl.coffeecounter.ui.main.MainFragment
 import org.bl.coffeecounter.ui.main.MainViewModel
 import org.bl.coffeecounter.ui.main.MainViewModelFactory
-import java.util.*
-import kotlin.experimental.and
+import org.bl.coffeecounter.util.parseNFCMessage
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,29 +41,13 @@ class MainActivity : AppCompatActivity() {
     private fun handleIntent(intent: Intent) {
         if (NfcAdapter.ACTION_NDEF_DISCOVERED == intent.action) {
             intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES)?.also { rawMessages ->
-                val messages: List<NdefMessage> = rawMessages.map { it as NdefMessage }
-                messages.forEach { m ->
-                    m.records.forEach { r ->
-                        if (Arrays.equals(NdefRecord.RTD_TEXT, r.type)) {
-                            val payload = r.payload
-                            if (payload.isNotEmpty()) {
-                                val textEncoding =
-                                    if (payload[0] and 128.toByte() == 0.toByte()) "UTF-8" else "UTF-16"
-                                val langCodeLength = payload[0] and 63.toByte()
-                                val inMessage = String(
-                                    payload,
-                                    langCodeLength + 1,
-                                    payload.count() - langCodeLength - 1,
-                                    charset(textEncoding)
-                                )
-                                if ("COFFEE!" == inMessage.trim()) {
-                                    mainViewModel.insert(Coffee(System.currentTimeMillis()))
-                                }
-                            }
-                        }
-                    }
-                }
+              parseNFCMessage(rawMessages, {coffee -> mainViewModel.addACoffee(coffee)}, {exception -> handleException(exception)})
             }
         }
+    }
+
+    private fun handleException(e: Exception) {
+        Log.e("COFFEE-COUNTER", "Error while parsing nfc data", e)
+        Toast.makeText(this, R.string.could_not_parse_nfc_tag, Toast.LENGTH_LONG).show()
     }
 }

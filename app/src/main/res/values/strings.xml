@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">CoffeeCounter</string>
+    <string name="the_coffeecount">The CoffeeCount</string>
+    <string name="reset">Reset</string>
+    <string name="today">Today</string>
+    <string name="this_month">This month</string>
+    <string name="this_year">This year</string>
+    <string name="total">Total</string>
+    <string name="this_week">This week</string>
+    <string name="could_not_parse_nfc_tag">Bad data from NFC</string>
 </resources>
