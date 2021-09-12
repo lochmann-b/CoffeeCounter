@@ -81,13 +81,6 @@ class MainViewModel(private val repository: CoffeeRepository) : ViewModel() {
         }
     }
 
-    fun deleteLastCoffee() {
-        viewModelScope.launch {
-            repository.deleteLastCoffee()
-        }
-    }
-
-
 }
 
 class MainViewModelFactory(private val repository: CoffeeRepository) : ViewModelProvider.Factory {

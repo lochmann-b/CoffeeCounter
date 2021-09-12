@@ -12,9 +12,17 @@
         <action
             android:id="@+id/action_mainFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_coffeeCountFragment"
+            app:destination="@id/coffeeCountFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
         android:name="org.bl.coffeecounter.ui.payment.PaymentFragment"
         android:label="PaymentFragment" />
+    <fragment
+        android:id="@+id/coffeeCountFragment"
+        android:name="org.bl.coffeecounter.ui.coffeecount.CoffeeCountFragment"
+        android:label="coffee_count_fragment"
+        tools:layout="@layout/coffee_count_fragment" />
 </navigation>

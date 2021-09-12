@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -38,6 +39,11 @@ class MainFragment : Fragment() {
         paymentButtn.setOnClickListener(View.OnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToPaymentFragment())
         })
+
+        val coffeeCountCard: CardView = binding.root.findViewById(R.id.coffeeCountCard)
+        coffeeCountCard.setOnClickListener {
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToCoffeeCountFragment())
+        }
 
         return binding.root
     }
