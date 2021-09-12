@@ -5,13 +5,14 @@
       <map>
         <entry key="..\:/Users/benjaminl/AndroidStudioProjects/CoffeeCounter/app/src/main/res/layout/main_activity.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/benjaminl/AndroidStudioProjects/CoffeeCounter/app/src/main/res/layout/main_fragment.xml" value="0.31666666666666665" />
-        <entry key="..\:/repos/CoffeeCounter/app/src/main/res/layout/fragment_payment.xml" value="0.33177083333333335" />
-        <entry key="..\:/repos/CoffeeCounter/app/src/main/res/layout/main_activity.xml" value="0.32708333333333334" />
-        <entry key="..\:/repos/CoffeeCounter/app/src/main/res/layout/main_fragment.xml" value="0.25" />
-        <entry key="..\:/repos/CoffeeCounter/app/src/main/res/layout/payment_fragment.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/drawable/background.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/layout/main_activity.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/payment_fragment.xml" value="0.2578125" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
