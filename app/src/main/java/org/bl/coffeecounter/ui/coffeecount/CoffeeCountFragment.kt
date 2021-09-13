@@ -9,10 +9,13 @@ import android.widget.ListView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.bl.coffeecounter.BR
 import org.bl.coffeecounter.CoffeeCounterApplication
 import org.bl.coffeecounter.R
 import org.bl.coffeecounter.databinding.CoffeeCountFragmentBinding
+import org.bl.coffeecounter.db.entities.Coffee
 
 class CoffeeCountFragment : Fragment() {
 
@@ -33,14 +36,16 @@ class CoffeeCountFragment : Fragment() {
         binding.setVariable(BR.viewModel, coffeeCountViewModel)
 
 
-        val coffeeList: ListView = binding.root.findViewById(R.id.coffeeList)
-
+        val coffeeList: RecyclerView = binding.root.findViewById(R.id.coffeeList)
+        coffeeList.layoutManager = LinearLayoutManager(requireContext())
+        coffeeList.adapter = CoffeeAdapter(ArrayList<Coffee>(0), {id -> coffeeCountViewModel.deleteCoffee(id)})
         coffeeCountViewModel.allCoffee.observe(viewLifecycleOwner, {coffee ->
             val allCoffee = coffee.toTypedArray()
             allCoffee.sortWith(Comparator { a, b ->
                 b.localDateTime.compareTo(a.localDateTime)
             })
-           coffeeList.adapter =ArrayAdapter(this.requireContext(), android.R.layout.simple_list_item_1,allCoffee)
+           (coffeeList.adapter as CoffeeAdapter).data = allCoffee.toList()
+            coffeeList?.adapter?.notifyDataSetChanged()
         })
 
 

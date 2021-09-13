@@ -9,8 +9,8 @@ class CoffeeCountViewModel(private val repository: CoffeeRepository) : ViewModel
 
     val allCoffee: LiveData<List<Coffee>> = repository.allCoffee.asLiveData()
 
-    fun deleteLatestCoffee() = viewModelScope.launch {
-        repository.deleteLastCoffee()
+    fun deleteCoffee(id: Int) = viewModelScope.launch{
+        repository.deleteCoffee(id)
     }
 }
 

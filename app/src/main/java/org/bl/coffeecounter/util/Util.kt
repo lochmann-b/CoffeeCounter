@@ -8,9 +8,23 @@ import org.json.JSONObject
 import org.json.JSONTokener
 import java.lang.Exception
 import java.text.DecimalFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.function.Consumer
 import kotlin.experimental.and
+
+fun formatDateTime(dateTime: LocalDateTime): String {
+    return dateTime.format(DateTimeFormatter.ofPattern("dd.MMyyyy HH:mm:ss"))
+}
+
+fun formatDate(dateTime: LocalDateTime): String {
+    return dateTime.format(DateTimeFormatter.ofPattern("dd.MMyyyy"))
+}
+
+fun formatTime(dateTime: LocalDateTime): String {
+    return dateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+}
 
 fun formatCurrency(amount: Double): String {
     return DecimalFormat.getCurrencyInstance().format(amount)

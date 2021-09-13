@@ -15,6 +15,6 @@ interface CoffeDao {
     @Query("DELETE FROM coffee")
     suspend fun deleteAllCoffee()
 
-    @Query("Delete from coffee where id = (select max(id) from coffee)")
-    suspend fun deleteLastCoffee()
+    @Query("delete from coffee where id = :id")
+    suspend fun delete(id: Int)
 }
