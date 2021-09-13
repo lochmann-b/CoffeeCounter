@@ -5,12 +5,10 @@
       <map>
         <entry key="..\:/Users/benjaminl/AndroidStudioProjects/CoffeeCounter/app/src/main/res/layout/main_activity.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/benjaminl/AndroidStudioProjects/CoffeeCounter/app/src/main/res/layout/main_fragment.xml" value="0.31666666666666665" />
-        <entry key="..\:/repos/CoffeeCounter/app/src/main/res/layout/card_coffee.xml" value="0.25" />
-        <entry key="..\:/repos/CoffeeCounter/app/src/main/res/layout/coffee_count_fragment.xml" value="0.32447916666666665" />
-        <entry key="..\:/repos/CoffeeCounter/app/src/main/res/layout/history_fragment.xml" value="0.32447916666666665" />
         <entry key="app/src/main/res/drawable/background.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/layout/coffee_count_fragment.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.32608695652173914" />
         <entry key="app/src/main/res/layout/payment_fragment.xml" value="0.2578125" />
       </map>
     </option>

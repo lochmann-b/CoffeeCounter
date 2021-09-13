@@ -13,9 +13,31 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayoutCompat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="10dp">
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-15dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/beans" />
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/labelTitle"
@@ -25,6 +47,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/the_coffeecount"
             android:textAlignment="center"
+            android:textColor="@color/primaryTextColor"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +64,7 @@
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/primaryLightColor"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/coffeeCountCard"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -85,6 +109,7 @@
                     android:text="Guthaben"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -100,7 +125,7 @@
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/primaryLightColor"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
@@ -235,12 +260,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:clickable="true"
-            android:src="@android:drawable/ic_menu_add"
             android:onClick="@{() -> viewModel.addCoffeeManually()}"
-           />
+            android:src="@android:drawable/ic_menu_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
