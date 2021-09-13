@@ -279,7 +279,7 @@
             android:layout_marginBottom="8dp"
             android:clickable="true"
             android:onClick="@{() -> viewModel.addCoffeeManually()}"
-            android:src="@android:drawable/ic_menu_add"
+            android:src="@drawable/coffee"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
