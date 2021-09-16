@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="-25dp"
+                app:cardBackgroundColor="@color/secondaryLightColor"
                 app:cardCornerRadius="25dp" />
         </FrameLayout>
 
@@ -80,7 +81,7 @@
             android:layout_marginEnd="8dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/primaryLightColor"
+            app:cardBackgroundColor="@color/secondaryColor"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/coffeeCountCard"
             app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +142,7 @@
             android:layout_marginEnd="8dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/primaryLightColor"
+            app:cardBackgroundColor="@color/secondaryColor"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +165,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/today"
-                    android:textColor="@color/primaryTextColor"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -225,16 +225,17 @@
                     android:text="@{viewModel.coffeeCountToday.toString()}"
                     app:layout_constraintBottom_toBottomOf="@+id/labelToday"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="0" />
+                    tools:text="1" />
 
                 <TextView
                     android:id="@+id/coffeeCountThisWeek"
                     style="@style/coffeecount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:text="@{viewModel.coffeeCountThisWeek.toString()}"
                     app:layout_constraintBottom_toBottomOf="@+id/labelThisWeek"
-                    app:layout_constraintStart_toStartOf="@+id/coffeeCountToday"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:text="0" />
 
                 <TextView
@@ -242,9 +243,10 @@
                     style="@style/coffeecount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:text="@{viewModel.coffeeCountThisMonth.toString()}"
                     app:layout_constraintBottom_toBottomOf="@+id/labelThisMonth"
-                    app:layout_constraintStart_toStartOf="@+id/coffeeCountToday"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:text="0" />
 
                 <TextView
@@ -252,9 +254,10 @@
                     style="@style/coffeecount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:text="@{viewModel.coffeeCountThisYear.toString()}"
                     app:layout_constraintBottom_toBottomOf="@+id/lableThisYear"
-                    app:layout_constraintStart_toStartOf="@+id/coffeeCountToday"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:text="0" />
 
                 <TextView
@@ -262,10 +265,11 @@
                     style="@style/coffeecount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:text="@{Integer.toString(viewModel.allCoffee.size)}"
                     app:layout_constraintBottom_toBottomOf="@+id/labelTotal"
-                    app:layout_constraintStart_toStartOf="@+id/coffeeCountThisYear"
-                    tools:text="0" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="10" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

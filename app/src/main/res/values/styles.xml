@@ -4,7 +4,7 @@
     <style name="coffeecount_label">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
     </style>
 
     <style name="coffeecount_value" parent="coffeecount_label" />
