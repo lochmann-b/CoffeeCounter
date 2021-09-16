@@ -8,11 +8,15 @@ import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.bl.coffeecounter.BR
 import org.bl.coffeecounter.CoffeeCounterApplication
 import org.bl.coffeecounter.R
 import org.bl.coffeecounter.databinding.PaymentFragmentBinding
+import java.util.function.Consumer
 
 class PaymentFragment : Fragment() {
 
@@ -38,6 +42,17 @@ class PaymentFragment : Fragment() {
             findNavController().popBackStack()
         })
 
+        val paymentsList: RecyclerView = binding.root.findViewById(R.id.payments)
+        paymentsList.layoutManager = LinearLayoutManager(requireContext())
+        paymentsList.adapter = PaymentAdapter(ArrayList(0), Consumer { id -> paymentViewModel.delete(id) })
+        paymentViewModel.allPayment.observe(viewLifecycleOwner, Observer {
+            val allPayment = it.toTypedArray()
+            allPayment.sortWith { a, b ->
+                b.localDateTime.compareTo(a.localDateTime)
+            }
+            (paymentsList.adapter as PaymentAdapter).data = allPayment.toList()
+            paymentsList.adapter?.notifyDataSetChanged()
+        })
         return binding.root
     }
 

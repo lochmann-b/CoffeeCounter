@@ -19,7 +19,7 @@ fun formatDateTime(dateTime: LocalDateTime): String {
 }
 
 fun formatDate(dateTime: LocalDateTime): String {
-    return dateTime.format(DateTimeFormatter.ofPattern("dd.MMyyyy"))
+    return dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
 }
 
 fun formatTime(dateTime: LocalDateTime): String {

@@ -38,7 +38,7 @@ class CoffeeCountFragment : Fragment() {
 
         val coffeeList: RecyclerView = binding.root.findViewById(R.id.coffeeList)
         coffeeList.layoutManager = LinearLayoutManager(requireContext())
-        coffeeList.adapter = CoffeeAdapter(ArrayList<Coffee>(0), {id -> coffeeCountViewModel.deleteCoffee(id)})
+        coffeeList.adapter = CoffeeAdapter(ArrayList(0), { id -> coffeeCountViewModel.deleteCoffee(id)})
         coffeeCountViewModel.allCoffee.observe(viewLifecycleOwner, {coffee ->
             val allCoffee = coffee.toTypedArray()
             allCoffee.sortWith(Comparator { a, b ->

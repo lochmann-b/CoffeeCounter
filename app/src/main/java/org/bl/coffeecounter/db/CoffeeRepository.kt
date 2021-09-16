@@ -23,8 +23,8 @@ class CoffeeRepository (private val coffeeDao: CoffeDao, private val paymentDao:
     }
 
     @WorkerThread
-    suspend fun delete(payment: Payment) {
-        paymentDao.delete(payment)
+    suspend fun delete(id: Int) {
+        paymentDao.delete(id)
     }
 
     @WorkerThread

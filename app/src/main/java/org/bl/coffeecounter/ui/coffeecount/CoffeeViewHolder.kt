@@ -13,8 +13,6 @@ class CoffeeViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val flavour: TextView
         val cost: TextView
         val deleteButton: ImageButton
-
-
         init {
             date = view.findViewById(R.id.date)
             time = view.findViewById(R.id.time)

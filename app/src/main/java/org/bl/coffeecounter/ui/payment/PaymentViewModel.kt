@@ -1,6 +1,5 @@
 package org.bl.coffeecounter.ui.payment
 
-import android.text.method.TransformationMethod
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import org.bl.coffeecounter.db.CoffeeRepository
@@ -8,6 +7,8 @@ import org.bl.coffeecounter.db.entities.Payment
 import java.time.LocalDateTime
 
 class PaymentViewModel(private val repository: CoffeeRepository) : ViewModel() {
+
+    val allPayment: LiveData<List<Payment>> = repository.allPayment.asLiveData()
 
     val selectedAmount: MutableLiveData<String> = MutableLiveData()
     val isFive:LiveData<Boolean> = Transformations.map(selectedAmount, {a -> amountEquals(a, 5.0)})
@@ -48,20 +49,24 @@ class PaymentViewModel(private val repository: CoffeeRepository) : ViewModel() {
     }
 
     private fun isValidAmount(input: String?): Boolean {
-        try {
+        return try {
             val asDouble = input?.toDouble() ?: 0.0
-            return asDouble > 0.0
+            asDouble > 0.0
         }catch(e: Exception) {
-            return false
+            false
         }
     }
 
     private fun amountEquals(input:String?, amount:Double): Boolean {
-        try {
-            return input?.toDouble()?.equals(amount) ?: false
+        return try {
+            input?.toDouble()?.equals(amount) ?: false
         }catch(e: Exception) {
-            return false
+            false
         }
+    }
+
+    fun delete(id: Int) = viewModelScope.launch {
+        repository.delete(id)
     }
 
 }

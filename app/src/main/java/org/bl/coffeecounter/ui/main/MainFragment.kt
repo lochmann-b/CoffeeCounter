@@ -35,16 +35,24 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.setVariable(BR.viewModel, mainViewModel)
 
-        val paymentButtn: Button = binding.root.findViewById(R.id.paymentButton)
-        paymentButtn.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToPaymentFragment())
-        })
+        val paymentButton: Button = binding.root.findViewById(R.id.paymentButton)
+        paymentButton.setOnClickListener {
+           navigateToPayments()
+        }
+
+        val cardBalance: CardView = binding.root.findViewById((R.id.cardBalance))
+        cardBalance.setOnClickListener{
+            navigateToPayments()
+        }
 
         val coffeeCountCard: CardView = binding.root.findViewById(R.id.coffeeCountCard)
         coffeeCountCard.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToCoffeeCountFragment())
         }
-
         return binding.root
+    }
+
+    private fun navigateToPayments() {
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToPaymentFragment())
     }
 }

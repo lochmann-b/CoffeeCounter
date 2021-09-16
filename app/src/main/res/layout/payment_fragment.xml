@@ -81,24 +81,50 @@
             android:id="@+id/amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:ems="10"
             android:inputType="numberDecimal"
+            android:minHeight="48dp"
             android:text="@={viewModel.selectedAmount}"
-            app:layout_constraintEnd_toEndOf="@+id/chipGroup"
-            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintEnd_toStartOf="@+id/pay"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
 
         <Button
             android:id="@+id/pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/pay_now"
+            android:layout_marginEnd="8dp"
             android:enabled="@{viewModel.isValid()}"
+            android:text="@string/pay_now"
+            app:layout_constraintBottom_toBottomOf="@+id/amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/amount" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/coffeecounter_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="The Schouder"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/payments"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

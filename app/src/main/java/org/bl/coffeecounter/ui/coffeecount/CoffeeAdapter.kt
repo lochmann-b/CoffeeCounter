@@ -10,7 +10,7 @@ import org.bl.coffeecounter.util.formatDate
 import org.bl.coffeecounter.util.formatTime
 import java.util.function.Consumer
 
-class CoffeeAdapter(var data: List<Coffee>, val deleteListener: Consumer<Int>): RecyclerView.Adapter<CoffeeViewHolder>() {
+class CoffeeAdapter(var data: List<Coffee>, private val deleteListener: Consumer<Int>): RecyclerView.Adapter<CoffeeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoffeeViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_coffee, parent, false)

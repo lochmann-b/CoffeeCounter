@@ -13,7 +13,7 @@ interface PaymentDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(payment: Payment)
 
-    @Delete
-    suspend fun delete(payment: Payment)
+    @Query("delete from payment where id = :id")
+    suspend fun delete(id: Int)
 
 }
